@@ -2,7 +2,6 @@ package main
 
 import (
 	"douyin/cmd/relation/dal"
-	"douyin/cmd/relation/rpc"
 	"douyin/kitex_gen/relation/relationservice"
 	"douyin/pkg/constants"
 	"github.com/cloudwego/kitex/pkg/klog"
@@ -14,7 +13,6 @@ import (
 )
 
 func Init() {
-	rpc.InitRPC()
 	dal.Init()
 }
 func main() {
@@ -28,7 +26,7 @@ func main() {
 	}
 	Init()
 	svr := relationservice.NewServer(new(RelationServiceImpl),
-		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.NoteServiceName}), // server name
+		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.RelationServiceName}), // server name
 		server.WithServiceAddr(addr),                                       // address
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}), // limit
 		server.WithMuxTransport(),                                          // Multiplex

@@ -25,6 +25,7 @@ func NewServiceInfo() *kitex.ServiceInfo {
 		"Follow":       kitex.NewMethodInfo(followHandler, newFollowArgs, newFollowResult, false),
 		"ListFollow":   kitex.NewMethodInfo(listFollowHandler, newListFollowArgs, newListFollowResult, false),
 		"ListFollower": kitex.NewMethodInfo(listFollowerHandler, newListFollowerArgs, newListFollowerResult, false),
+		"ListFriend":   kitex.NewMethodInfo(listFriendHandler, newListFriendArgs, newListFriendResult, false),
 	}
 	extra := map[string]interface{}{
 		"PackageName": "douyin.relation",
@@ -77,27 +78,6 @@ type FollowArgs struct {
 	Req *relation.DouyinRelationActionRequest
 }
 
-func (p *FollowArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetReq() {
-		p.Req = new(relation.DouyinRelationActionRequest)
-	}
-	return p.Req.FastRead(buf, _type, number)
-}
-
-func (p *FollowArgs) FastWrite(buf []byte) (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.FastWrite(buf)
-}
-
-func (p *FollowArgs) Size() (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.Size()
-}
-
 func (p *FollowArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, fmt.Errorf("No req in FollowArgs")
@@ -132,27 +112,6 @@ type FollowResult struct {
 }
 
 var FollowResult_Success_DEFAULT *relation.DouyinRelationActionResponse
-
-func (p *FollowResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetSuccess() {
-		p.Success = new(relation.DouyinRelationActionResponse)
-	}
-	return p.Success.FastRead(buf, _type, number)
-}
-
-func (p *FollowResult) FastWrite(buf []byte) (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.FastWrite(buf)
-}
-
-func (p *FollowResult) Size() (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.Size()
-}
 
 func (p *FollowResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
@@ -222,27 +181,6 @@ type ListFollowArgs struct {
 	Req *relation.DouyinRelationFollowListRequest
 }
 
-func (p *ListFollowArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetReq() {
-		p.Req = new(relation.DouyinRelationFollowListRequest)
-	}
-	return p.Req.FastRead(buf, _type, number)
-}
-
-func (p *ListFollowArgs) FastWrite(buf []byte) (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.FastWrite(buf)
-}
-
-func (p *ListFollowArgs) Size() (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.Size()
-}
-
 func (p *ListFollowArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, fmt.Errorf("No req in ListFollowArgs")
@@ -277,27 +215,6 @@ type ListFollowResult struct {
 }
 
 var ListFollowResult_Success_DEFAULT *relation.DouyinRelationFollowListResponse
-
-func (p *ListFollowResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetSuccess() {
-		p.Success = new(relation.DouyinRelationFollowListResponse)
-	}
-	return p.Success.FastRead(buf, _type, number)
-}
-
-func (p *ListFollowResult) FastWrite(buf []byte) (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.FastWrite(buf)
-}
-
-func (p *ListFollowResult) Size() (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.Size()
-}
 
 func (p *ListFollowResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
@@ -367,27 +284,6 @@ type ListFollowerArgs struct {
 	Req *relation.DouyinRelationFollowerListRequest
 }
 
-func (p *ListFollowerArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetReq() {
-		p.Req = new(relation.DouyinRelationFollowerListRequest)
-	}
-	return p.Req.FastRead(buf, _type, number)
-}
-
-func (p *ListFollowerArgs) FastWrite(buf []byte) (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.FastWrite(buf)
-}
-
-func (p *ListFollowerArgs) Size() (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.Size()
-}
-
 func (p *ListFollowerArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, fmt.Errorf("No req in ListFollowerArgs")
@@ -423,27 +319,6 @@ type ListFollowerResult struct {
 
 var ListFollowerResult_Success_DEFAULT *relation.DouyinRelationFollowerListResponse
 
-func (p *ListFollowerResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetSuccess() {
-		p.Success = new(relation.DouyinRelationFollowerListResponse)
-	}
-	return p.Success.FastRead(buf, _type, number)
-}
-
-func (p *ListFollowerResult) FastWrite(buf []byte) (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.FastWrite(buf)
-}
-
-func (p *ListFollowerResult) Size() (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.Size()
-}
-
 func (p *ListFollowerResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
 		return out, fmt.Errorf("No req in ListFollowerResult")
@@ -472,6 +347,109 @@ func (p *ListFollowerResult) SetSuccess(x interface{}) {
 }
 
 func (p *ListFollowerResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func listFriendHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(relation.DouyinRelationFriendListRequest)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(relation.RelationService).ListFriend(ctx, req)
+		if err != nil {
+			return err
+		}
+		if err := st.SendMsg(resp); err != nil {
+			return err
+		}
+	case *ListFriendArgs:
+		success, err := handler.(relation.RelationService).ListFriend(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*ListFriendResult)
+		realResult.Success = success
+	}
+	return nil
+}
+func newListFriendArgs() interface{} {
+	return &ListFriendArgs{}
+}
+
+func newListFriendResult() interface{} {
+	return &ListFriendResult{}
+}
+
+type ListFriendArgs struct {
+	Req *relation.DouyinRelationFriendListRequest
+}
+
+func (p *ListFriendArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, fmt.Errorf("No req in ListFriendArgs")
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *ListFriendArgs) Unmarshal(in []byte) error {
+	msg := new(relation.DouyinRelationFriendListRequest)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var ListFriendArgs_Req_DEFAULT *relation.DouyinRelationFriendListRequest
+
+func (p *ListFriendArgs) GetReq() *relation.DouyinRelationFriendListRequest {
+	if !p.IsSetReq() {
+		return ListFriendArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *ListFriendArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+type ListFriendResult struct {
+	Success *relation.DouyinRelationFriendListResponse
+}
+
+var ListFriendResult_Success_DEFAULT *relation.DouyinRelationFriendListResponse
+
+func (p *ListFriendResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, fmt.Errorf("No req in ListFriendResult")
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *ListFriendResult) Unmarshal(in []byte) error {
+	msg := new(relation.DouyinRelationFriendListResponse)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *ListFriendResult) GetSuccess() *relation.DouyinRelationFriendListResponse {
+	if !p.IsSetSuccess() {
+		return ListFriendResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *ListFriendResult) SetSuccess(x interface{}) {
+	p.Success = x.(*relation.DouyinRelationFriendListResponse)
+}
+
+func (p *ListFriendResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
@@ -510,6 +488,16 @@ func (p *kClient) ListFollower(ctx context.Context, Req *relation.DouyinRelation
 	_args.Req = Req
 	var _result ListFollowerResult
 	if err = p.c.Call(ctx, "ListFollower", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) ListFriend(ctx context.Context, Req *relation.DouyinRelationFriendListRequest) (r *relation.DouyinRelationFriendListResponse, err error) {
+	var _args ListFriendArgs
+	_args.Req = Req
+	var _result ListFriendResult
+	if err = p.c.Call(ctx, "ListFriend", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
