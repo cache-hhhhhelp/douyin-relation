@@ -1,0 +1,56 @@
+syntax = "proto2";
+package douyin.relation;
+
+option go_package = "relation";
+
+// action
+message DouyinRelationActionRequest {
+  required string token = 1; // 用户鉴权token
+  required int64 to_user_id = 2; // 对方用户id
+  required int32 action_type = 3; // 1-关注，2-取消关注
+}
+
+message DouyinRelationActionResponse {
+  required int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  optional string status_msg = 2; // 返回状态描述
+}
+
+// follow
+message User {
+  required int64 id = 1; // 用户id
+  required string name = 2; // 用户名称
+  optional int64 follow_count = 3; // 关注总数
+  optional int64 follower_count = 4; // 粉丝总数
+  required bool is_follow = 5; // true-已关注，false-未关注
+}
+
+message DouyinRelationFollowListRequest {
+  required int64 user_id = 1; // 用户id
+  required string token = 2; // 用户鉴权token
+}
+
+message DouyinRelationFollowListResponse {
+  required int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  optional string status_msg = 2; // 返回状态描述
+  repeated User user_list = 3; // 用户信息列表
+}
+
+
+// follower
+
+message DouyinRelationFollowerListRequest {
+  required int64 user_id = 1; // 用户id
+  required string token = 2; // 用户鉴权token
+}
+
+message DouyinRelationFollowerListResponse {
+  required int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  optional string status_msg = 2; // 返回状态描述
+  repeated User user_list = 3; // 用户列表
+}
+
+service RelationService {
+  rpc Follow (DouyinRelationActionRequest) returns (DouyinRelationActionResponse) {}
+  rpc ListFollow (DouyinRelationFollowListRequest) returns (DouyinRelationFollowListResponse) {}
+  rpc ListFollower (DouyinRelationFollowerListRequest) returns (DouyinRelationFollowerListResponse) {}
+}
